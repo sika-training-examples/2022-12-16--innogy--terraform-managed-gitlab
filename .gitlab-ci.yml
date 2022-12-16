@@ -1,0 +1,27 @@
+image: sikalabs/ci
+
+stages:
+  - plan
+  - apply
+
+cache:
+  paths:
+    - .terraform
+
+before_script:
+  - make tf-init-state GITLAB_USERNAME=gitlab-ci-token GITLAB_TOKEN=$TF_VAR_gitlab_token
+
+plan:
+  stage: plan
+  script:
+    - terraform plan -out plan.tfplan
+  artifacts:
+    paths:
+      - plan.tfplan
+
+apply:
+  stage: apply
+  when: manual
+  allow_failure: false
+  script:
+    - terraform apply plan.tfplan
