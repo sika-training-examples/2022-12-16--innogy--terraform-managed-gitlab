@@ -21,7 +21,6 @@ plan:
 
 apply:
   stage: apply
-  when: manual
   allow_failure: false
   script:
     - terraform apply plan.tfplan
