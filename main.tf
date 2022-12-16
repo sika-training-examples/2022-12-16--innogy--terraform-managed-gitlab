@@ -54,7 +54,7 @@ resource "gitlab_project_variable" "project_3_protected_variables" {
 }
 
 resource "gitlab_pipeline_schedule" "schedules" {
-  for_each = local.schedule
+  for_each = local.schedules
 
   project     = "3"
   description = each.key
