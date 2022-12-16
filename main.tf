@@ -26,6 +26,12 @@ locals {
     MY_TOKEN_A = "this-is-token-a"
     MY_XXX_FOO = "foo-foo-foo"
   }
+  schedules = {
+    NIGHTLY = {
+      ref  = "master"
+      cron = "0 0 * * *"
+    }
+  }
 }
 
 resource "gitlab_project_variable" "project_3_unprotected_variables" {
@@ -45,4 +51,13 @@ resource "gitlab_project_variable" "project_3_protected_variables" {
   value     = each.value
   protected = true
   masked    = true
+}
+
+resource "gitlab_pipeline_schedule" "schedules" {
+  for_each = local.schedule
+
+  project     = "3"
+  description = each.key
+  ref         = each.value.ref
+  cron        = each.value.cron
 }
