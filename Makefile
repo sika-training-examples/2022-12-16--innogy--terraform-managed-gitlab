@@ -1,6 +1,6 @@
 GITLAB_DOMAIN = gitlab.sikademo.com
 GITLAB_PROJECT_ID = 4
-STATE_NAME = "main"
+STATE_NAME = main
 
 tf-init-state:
 ifndef GITLAB_USERNAME
