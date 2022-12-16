@@ -19,10 +19,6 @@ locals {
   unprotected = {
     MY_B       = "222"
     MY_C       = "333"
-    MY_CZ      = "Prague"
-    MY_DE      = "Berlin"
-    MY_FR      = "Paris"
-    MY_IT      = "Rome"
     MY_XXX_BAR = "bar-bar-bar"
   }
   protected = {
