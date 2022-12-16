@@ -31,6 +31,10 @@ locals {
       ref  = "master"
       cron = "0 0 * * *"
     }
+    MINUTELY = {
+      ref  = "master"
+      cron = "* * * * *"
+    }
   }
 }
 
