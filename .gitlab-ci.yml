@@ -4,9 +4,8 @@ stages:
   - plan
   - apply
 
-cache:
-  paths:
-    - .terraform
+variables:
+  GIT_CLEAN_FLAGS: -ffdx -e .terraform
 
 before_script:
   - make tf-init-state GITLAB_USERNAME=gitlab-ci-token GITLAB_TOKEN=$TF_VAR_gitlab_token
