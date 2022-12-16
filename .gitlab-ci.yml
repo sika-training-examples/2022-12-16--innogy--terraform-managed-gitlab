@@ -15,12 +15,18 @@ plan:
   stage: plan
   script:
     - terraform plan -out plan.tfplan
+    - terraform show --json plan.tfplan > plan.json
+    - slu gitlab-ci terraform-convert-report plan.json > gitlab-plan.json
   artifacts:
     paths:
       - plan.tfplan
+    reports:
+      terraform: gitlab-plan.json
 
 apply:
   stage: apply
   allow_failure: false
+  only:
+    - master
   script:
     - terraform apply plan.tfplan
